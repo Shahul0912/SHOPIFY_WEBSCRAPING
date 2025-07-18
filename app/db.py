@@ -10,11 +10,9 @@ engine = create_engine(
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-# --- IMPORTANT: Import models here so Base knows about them ---
 try:
-    from app import schemas  # This import must be after Base is defined
+    from app import schemas 
 except ImportError:
     pass
 
-# --- Create tables on startup ---
 Base.metadata.create_all(bind=engine) 
